@@ -10,20 +10,26 @@ terraform {
 provider "aws" {
   alias   = "account-admin"
   region  = var.account_region
-  profile = var.account_profile
+  # profile = var.account_profile
+  access_key = var.AWS_ACCESS_KEY_ID_ACCOUINT
+  secret_key = var.AWS_SECRET_ACCESS_KEY_ACCOUNT
 }
 
 
 provider "aws" {
   alias   = "profile-admin"
   region  = var.profile_region
-  profile = var.profile_profile
+  # profile = var.profile_profile
+  access_key = var.AWS_ACCESS_KEY_ID_PROFILE
+  secret_key = var.AWS_SECRET_ACCESS_KEY_PROFILE
 }
 
 provider "aws" {
   alias   = "statement-admin"
   region  = var.statement_region
-  profile = var.statement_profile
+  # profile = var.statement_profile
+  access_key = var.AWS_ACCESS_KEY_ID_STATEMENT
+  secret_key = var.AWS_SECRET_ACCESS_KEY_STATEMENT
 }
 
 module "account_networking" {
@@ -95,3 +101,4 @@ module "statement_compute" {
 
 
 
+# create vpc peering between account_vpc and profile vpc, create vpc peering between profile_vpc and statement_vpc in networking/vpc_peering.tf
