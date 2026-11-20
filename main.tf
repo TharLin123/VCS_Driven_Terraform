@@ -11,7 +11,7 @@ provider "aws" {
   alias   = "account-admin"
   region  = var.account_region
   # profile = var.account_profile
-  access_key = var.AWS_ACCESS_KEY_ID_ACCOUINT
+  access_key = var.AWS_ACCESS_KEY_ID_ACCOUNT
   secret_key = var.AWS_SECRET_ACCESS_KEY_ACCOUNT
 }
 

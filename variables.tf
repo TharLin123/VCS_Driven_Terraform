@@ -33,3 +33,33 @@ variable "statement_profile" {
   type        = string
   default     = "statement-admin"
 }
+
+variable "AWS_ACCESS_KEY_ID_ACCOUNT" {
+  type      = string
+  sensitive = true
+}
+
+variable "AWS_SECRET_ACCESS_KEY_ACCOUNT" {
+  type      = string
+  sensitive = true
+}
+
+variable "AWS_ACCESS_KEY_ID_PROFILE" {
+  type      = string
+  sensitive = true
+}
+
+variable "AWS_SECRET_ACCESS_KEY_PROFILE" {
+  type      = string
+  sensitive = true
+}
+
+variable "AWS_ACCESS_KEY_ID_STATEMENT" {
+  type      = string
+  sensitive = true
+}
+
+variable "AWS_SECRET_ACCESS_KEY_STATEMENT" {
+  type      = string
+  sensitive = true
+}
