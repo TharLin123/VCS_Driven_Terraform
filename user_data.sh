@@ -28,8 +28,8 @@ rm -f fake_service.zip
 
 echo "Binary installation completed!"
 
-cat > /home/ec2-user/.ssh/account-key.pem <<'PRIVATE_KEY'
+cat > /home/ec2-user/.ssh/private-key.pem <<'PRIVATE_KEY'
 ${bastion_private_key}
 PRIVATE_KEY
 
-echo "Private key written to /home/ec2-user/.ssh/account-key.pem"
+echo "Private key written to /home/ec2-user/.ssh/private-key.pem"

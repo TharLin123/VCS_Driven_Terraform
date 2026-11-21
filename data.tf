@@ -3,6 +3,10 @@ data "aws_availability_zones" "account_available" {
   state    = "available"
 }
 
+data "aws_caller_identity" "account" {
+  provider = aws.account-admin
+}
+
 data "aws_ami" "account_amazon_linux" {
   provider    = aws.account-admin
   most_recent = true
@@ -29,6 +33,10 @@ data "aws_availability_zones" "profile_available" {
   state    = "available"
 }
 
+data "aws_caller_identity" "profile" {
+  provider = aws.profile-admin
+}
+
 data "aws_ami" "profile_amazon_linux" {
   provider    = aws.profile-admin
   most_recent = true
@@ -53,6 +61,10 @@ data "aws_ami" "profile_amazon_linux" {
 data "aws_availability_zones" "statement_available" {
   provider = aws.statement-admin
   state    = "available"
+}
+
+data "aws_caller_identity" "statement" {
+  provider = aws.statement-admin
 }
 
 data "aws_ami" "statement_amazon_linux" {

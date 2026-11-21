@@ -7,7 +7,7 @@ resource "aws_instance" "account_bastion" {
   associate_public_ip_address = true
 
   user_data = templatefile("${path.module}/../../user_data.sh", {
-    bastion_private_key = tls_private_key.account_bastion_private.private_key_pem
+    bastion_private_key = tls_private_key.account_private.private_key_pem
   })
 
   tags = {

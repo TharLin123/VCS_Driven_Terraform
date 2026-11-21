@@ -98,7 +98,26 @@ module "statement_compute" {
   }
 }
 
+module "vpc_peering" {
+  source = "./networking"
 
+  account_vpc_id                   = module.account_networking.vpc_id
+  profile_vpc_id                   = module.profile_networking.vpc_id
+  statement_vpc_id                 = module.statement_networking.vpc_id
+  account_public_route_table_id    = module.account_networking.public_route_table_id
+  account_private_route_table_id   = module.account_networking.private_route_table_id
+  profile_public_route_table_id    = module.profile_networking.public_route_table_id
+  profile_private_route_table_id   = module.profile_networking.private_route_table_id
+  statement_public_route_table_id  = module.statement_networking.public_route_table_id
+  statement_private_route_table_id = module.statement_networking.private_route_table_id
+  profile_owner_id                 = data.aws_caller_identity.profile.account_id
+  statement_owner_id               = data.aws_caller_identity.statement.account_id
+  profile_region                   = var.profile_region
+  statement_region                 = var.statement_region
 
-
-# create vpc peering between account_vpc and profile vpc, create vpc peering between profile_vpc and statement_vpc in networking/vpc_peering.tf
+  providers = {
+    aws.account   = aws.account-admin
+    aws.profile   = aws.profile-admin
+    aws.statement = aws.statement-admin
+  }
+}
