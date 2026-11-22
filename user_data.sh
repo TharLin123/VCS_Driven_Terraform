@@ -8,10 +8,9 @@ dnf update -y
 # Install wget and unzip
 dnf install -y wget unzip
 
+cd /home/ec2-user
 # Download ZIP file
 wget -O fake_service.zip "https://github.com/nicholasjackson/fake-service/releases/download/v0.26.2/fake_service_linux_amd64.zip"
-
-cd /home/ec2-user
 
 # Extract ZIP file
 unzip -o fake_service.zip

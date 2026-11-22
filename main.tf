@@ -10,26 +10,26 @@ terraform {
 provider "aws" {
   alias   = "account-admin"
   region  = var.account_region
-  # profile = var.account_profile
-  access_key = var.AWS_ACCESS_KEY_ID_ACCOUNT
-  secret_key = var.AWS_SECRET_ACCESS_KEY_ACCOUNT
+  profile = var.account_profile
+  # access_key = var.AWS_ACCESS_KEY_ID_ACCOUNT
+  # secret_key = var.AWS_SECRET_ACCESS_KEY_ACCOUNT
 }
 
 
 provider "aws" {
   alias   = "profile-admin"
   region  = var.profile_region
-  # profile = var.profile_profile
-  access_key = var.AWS_ACCESS_KEY_ID_PROFILE
-  secret_key = var.AWS_SECRET_ACCESS_KEY_PROFILE
+  profile = var.profile_profile
+  # access_key = var.AWS_ACCESS_KEY_ID_PROFILE
+  # secret_key = var.AWS_SECRET_ACCESS_KEY_PROFILE
 }
 
 provider "aws" {
   alias   = "statement-admin"
   region  = var.statement_region
-  # profile = var.statement_profile
-  access_key = var.AWS_ACCESS_KEY_ID_STATEMENT
-  secret_key = var.AWS_SECRET_ACCESS_KEY_STATEMENT
+  profile = var.statement_profile
+  # access_key = var.AWS_ACCESS_KEY_ID_STATEMENT
+  # secret_key = var.AWS_SECRET_ACCESS_KEY_STATEMENT
 }
 
 module "account_networking" {
@@ -48,6 +48,7 @@ module "account_compute" {
   private_subnet_id          = module.account_networking.private_subnet_id
   public_subnet_id           = module.account_networking.public_subnet_id
   public_subnet_secondary_id = module.account_networking.public_subnet_secondary_id
+  profile_vpc_cidr           = module.profile_networking.vpc_cidr_block
 
   providers = {
     aws = aws.account-admin
@@ -70,6 +71,7 @@ module "profile_compute" {
   private_subnet_id          = module.profile_networking.private_subnet_id
   public_subnet_id           = module.profile_networking.public_subnet_id
   public_subnet_secondary_id = module.profile_networking.public_subnet_secondary_id
+  statement_vpc_cidr         = module.statement_networking.vpc_cidr_block
 
   providers = {
     aws = aws.profile-admin
@@ -121,3 +123,5 @@ module "vpc_peering" {
     aws.statement = aws.statement-admin
   }
 }
+
+# scp -i ~/.ssh/private-key.pem fake-service ec2-user@:/home/ec2-user
