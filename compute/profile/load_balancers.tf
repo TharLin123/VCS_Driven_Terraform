@@ -1,6 +1,6 @@
 resource "aws_lb" "profile" {
   name               = "profile-alb"
-  internal           = false
+  internal           = true
   load_balancer_type = "application"
   subnets            = [var.public_subnet_id, var.public_subnet_secondary_id]
   security_groups    = [aws_security_group.profile_alb.id]

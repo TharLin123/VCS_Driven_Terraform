@@ -3,6 +3,11 @@ output "vpc_id" {
   value       = aws_vpc.profile.id
 }
 
+output "vpc_cidr_block" {
+  description = "CIDR block of the profile VPC"
+  value       = aws_vpc.profile.cidr_block
+}
+
 output "public_subnet_id" {
   description = "ID of the public subnet"
   value       = aws_subnet.profile_public.id

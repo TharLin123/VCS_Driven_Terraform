@@ -25,3 +25,7 @@ variable "vpc_id" {
   type = string
 }
 
+variable "profile_vpc_cidr" {
+  type = string
+}
+

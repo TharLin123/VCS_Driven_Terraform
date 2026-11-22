@@ -43,6 +43,13 @@ resource "aws_security_group" "profile" {
     security_groups = [aws_security_group.profile_alb.id]
   }
 
+  egress {
+    protocol    = "tcp"
+    from_port   = 80
+    to_port     = 80
+    cidr_blocks = ["10.0.0.0/16"]
+  }
+
   tags = {
     Name = "profile-ec2"
   }

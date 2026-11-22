@@ -43,6 +43,13 @@ resource "aws_security_group" "account" {
     security_groups = [aws_security_group.account_alb.id]
   }
 
+  egress {
+    protocol    = "tcp"
+    from_port   = 80
+    to_port     = 80
+    cidr_blocks = [var.profile_vpc_cidr]
+  }
+
   tags = {
     Name = "account-ec2"
   }
